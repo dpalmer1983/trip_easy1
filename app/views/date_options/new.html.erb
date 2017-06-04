@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @date_option.errors.any? %>
+  <% @date_option.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Date Option</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_date_option" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for trip_id -->
+      <div class="form-group">
+        <label for="trip_id" class="control-label">
+          Trip
+        </label>
+
+        <input type="text" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @date_option.trip_id %>">
+      </div>
+
+      <!-- Label and input for option -->
+      <div class="form-group">
+        <label for="option" class="control-label">
+          Option
+        </label>
+
+        <input type="text" id="option" name="option" placeholder="Option" class="form-control" value="<%= @date_option.option %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Date Option
+      </button>
+      or
+      <a href="/date_options">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @location_preference.errors.any? %>
+  <% @location_preference.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Location Preference #<%= @location_preference.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_location_preference/<%= @location_preference.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @location_preference.user_id %>">
+      </div>
+
+      <!-- Label and input for location_options_id -->
+      <div class="form-group">
+        <label for="location_options_id" class="control-label">
+          Location options
+        </label>
+
+        <input type="text" id="location_options_id" name="location_options_id" placeholder="Location options" class="form-control" value="<%= @location_preference.location_options_id %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Location Preference
+      </button>
+      or
+      <a href="/location_preferences/<%= @location_preference.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
