@@ -1,11 +1,11 @@
 <!-- Validation failure messages -->
 <% if @trip.errors.any? %>
-  <% @trip.errors.full_messages.each do |message| %>
-    <div class="alert alert-dismissable alert-danger">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= message %>
-    </div>
-  <% end %>
+<% @trip.errors.full_messages.each do |message| %>
+<div class="alert alert-dismissable alert-danger">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <%= message %>
+</div>
+<% end %>
 <% end %>
 
 <div class="page-header">
@@ -21,7 +21,7 @@
       <!-- Label and input for name -->
       <div class="form-group">
         <label for="name" class="control-label">
-          Name
+          Trip Name
         </label>
 
         <input type="text" id="name" name="name" placeholder="Name" class="form-control" value="<%= @trip.name %>">
@@ -30,7 +30,7 @@
       <!-- Label and input for location -->
       <div class="form-group">
         <label for="location" class="control-label">
-          Location
+          Where are you going?
         </label>
 
         <input type="text" id="location" name="location" placeholder="Location" class="form-control" value="<%= @trip.location %>">
@@ -39,35 +39,55 @@
       <!-- Label and input for date -->
       <div class="form-group">
         <label for="date" class="control-label">
-          Date
+          When are you going?
         </label>
 
         <input type="text" id="date" name="date" placeholder="Date" class="form-control" value="<%= @trip.date %>">
       </div>
 
-      <!-- Label and input for comment_id -->
+      <!-- Label and input for date -->
       <div class="form-group">
-        <label for="comment_id" class="control-label">
-          Comment
+        <label for="participants" class="control-label">
+          Who's coming on the trip
         </label>
 
-        <input type="text" id="comment_id" name="comment_id" placeholder="Comment" class="form-control" value="<%= @trip.comment_id %>">
-      </div>
+        <form action="/create_participant" method="post">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for planner_id -->
-      <div class="form-group">
-        <label for="planner_id" class="control-label">
-          Planner
-        </label>
+          <input type="hidden" name="trip_id" value="<%= @trip.id %>">
 
-        <input type="text" id="planner_id" name="planner_id" placeholder="Planner" class="form-control" value="<%= @trip.planner_id %>">
-      </div>
+          <label for="participant_id" class="control-label">
+            Participants
+          </label>
 
-      <button class="btn btn-success">
-        Create Trip
-      </button>
-      or
-      <a href="/trips">Cancel</a>
-    </form>
-  </div>
+          <%= select_tag(:participant_id, options_from_collection_for_select(Participant.all, :id, :name), :class => "form-control") %>
+
+          <a href="/participants/new">or add a new participant</a>
+        </div>
+
+
+        <!-- Label and input for comment_id -->
+        <!--    <label for="comment_id" class="control-label">
+        Comment
+      </label>
+
+      <input type="text" id="comment_id" name="comment_id" placeholder="Comment" class="form-control" value="<%= @trip.comment_id %>">
+    </div> -->
+
+    <!-- Label and input for planner_id -->
+    <!--    <div class="form-group">
+    <label for="planner_id" class="control-label">
+    Planner
+  </label>
+
+  <input type="text" id="planner_id" name="planner_id" placeholder="Planner" class="form-control" value="<%= @trip.planner_id %>">
+</div> -->
+
+<button class="btn btn-success">
+  Create Trip
+</button>
+or
+<a href="/trips">Cancel</a>
+</form>
+</div>
 </div>

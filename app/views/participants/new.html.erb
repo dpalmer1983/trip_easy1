@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add Participant</h3>
+  <h3>Add a new trip participant</h3>
 </div>
 
 <div class="row">
@@ -21,7 +21,7 @@
       <!-- Label and input for participant_id -->
       <div class="form-group">
         <label for="participant_id" class="control-label">
-          Participant
+          Who would you like to add?
         </label>
 
         <input type="text" id="participant_id" name="participant_id" placeholder="Participant" class="form-control" value="<%= @participant.participant_id %>">
@@ -33,7 +33,10 @@
           Trip
         </label>
 
-        <input type="text" id="trip_id" name="trip_id" placeholder="Trip" class="form-control" value="<%= @participant.trip_id %>">
+        <%= select_tag(:trip_id, options_from_collection_for_select(Trip.all, :id, :name), :class => "form-control") %>
+
+        <a href="/trips/new">or add a new trip</a>
+
       </div>
 
       <button class="btn btn-success">
