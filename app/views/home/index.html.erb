@@ -1,0 +1,51 @@
+<% if current_user %>
+<h3>Hello <%= @user.name %></h3>
+<% else %>
+
+<div class="jumbotron">
+  <h2> Welcome to Trip Easy! </h2>
+  <p class="lead">
+    You'll love managing your trip with our app with friends and family!
+  </p>
+</div>
+
+<div class="row">
+  <div class="plans clearfix">
+    <div class="col-lg-3 col-lg-offset-3 plan">
+      <h2>Plan a Trip</h2>
+      <div class="price pull-right">
+        Price: Free
+      </div>
+      <div class="features">
+        <ul>
+          <li>feature 1</li>
+          <li>feature 2</li>
+          <li>feature 3</li>
+          <li>feature 4</li>
+        </ul>
+      </div>
+      <p>
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+      </p>
+    </div>
+
+    <div class="col-lg-3">
+      <h2>Join a Trip</h2>
+      <div class="price pull-right">
+        Price: Free
+      </div>
+      <div class="features">
+        <ul>
+          <li>feature 1</li>
+          <li>feature 2</li>
+          <li>feature 3</li>
+          <li>feature 4</li>
+        </ul>
+      </div>
+      <p>
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary sign-up' %>
+      </p>
+    </div>
+  </div>
+</div>
+<% end %>
